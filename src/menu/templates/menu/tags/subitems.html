@@ -1,0 +1,14 @@
+{% load tags %}
+
+{% for item in items %}
+    <li {% if item.4 %}class="opened"{% endif %}>
+        {% if item.3 %}
+            <div class="drop">+</div><a {% if current_path == item.2 %}class="is_active"{% endif %} href="{% url 'item' item.2 %}">{{ item.1 }}</a>
+            <ul>
+                {% subitems item.3 current_path %}
+            </ul>
+        {% else %}
+            <a {% if current_path == item.2 %}class="is_active"{% endif %} href="{% url 'item' item.2 %}">{{ item.1 }}</a>
+        {% endif %}
+    </li>
+{% endfor %}
